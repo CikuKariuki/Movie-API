@@ -1,6 +1,11 @@
 from flask import Flask
+from .config import DevConfig
 
-#initialising application
-app=Flask(__name__)
+# Initializing application
+app = Flask(__name__,instance_relative_config = True)
+
+# Setting up configuration
+app.config.from_object(DevConfig)
+app.config.from_pyfile('config.py') #connects to config.py file and all its contents are appended to app.config
+
 from app import views
-
